@@ -1,13 +1,13 @@
-package com.testspring.webhook;
+package com.testspring.hello;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WebhookApplication {
+public class HelloApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WebhookApplication.class, args);
+		SpringApplication.run(HelloApplication.class, args);
 	}
 
 }
