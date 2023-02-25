@@ -19,6 +19,9 @@ public class WebhookController {
         HashMap<String, Object> responseBody = new HashMap<>();
         for (var key : requestBody.keySet()){
             responseBody.put(key, service.getMethod(requestBody.get(key).toString()));
+            if(responseBody.get(key) == null){
+                responseBody.put(key, requestBody.get(key).toString());
+            }
         }
         return responseBody;
     }
