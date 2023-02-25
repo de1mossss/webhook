@@ -15,10 +15,12 @@ public class WebhookController {
     private WebhookService service;
 
     @RequestMapping(value="/echo/*")
-    public Map<String, Object> hook(@RequestBody Map<String, Object> requestBody){
+    public Map<String, Object> hook(@RequestBody(required=false) Map<String, Object> requestBody){
         Map<String, Object> responseBody = new HashMap<>();
         responseBody = service.getRequestData();
-        responseBody.put("content", requestBody);
+        if(requestBody != null){
+            responseBody.put("content", requestBody);
+        }
         return responseBody;
     }
 }
