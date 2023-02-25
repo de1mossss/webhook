@@ -14,15 +14,11 @@ public class WebhookController {
     @Autowired
     private WebhookService service;
 
-    @RequestMapping(value="/echo", produces = MediaType.ALL_VALUE)
+    @RequestMapping(value="/echo/*")
     public Map<String, Object> hook(@RequestBody Map<String, Object> requestBody){
-        HashMap<String, Object> responseBody = new HashMap<>();
-        for (var key : requestBody.keySet()){
-            responseBody.put(key, service.getMethod(requestBody.get(key).toString()));
-            if(responseBody.get(key) == null){
-                responseBody.put(key, requestBody.get(key).toString());
-            }
-        }
+        Map<String, Object> responseBody = new HashMap<>();
+        responseBody = service.getRequestData();
+        responseBody.put("content", requestBody);
         return responseBody;
     }
 }
